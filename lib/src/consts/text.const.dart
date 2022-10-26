@@ -16,4 +16,11 @@ class TextConstants {
       'Senha ou Email inválidos, tente novamente!';
 
   static const String registerButtonText = 'CADASTRAR';
+
+  static const String logoSubtitleText = 'Entre ou se cadastre.';
+
+  static const String signInWithAppleButtonText = 'Entrar com Apple';
+  static const String signInWithGoogleButtonText = 'Entrar com Google';
+
+  static const String loginScreenDividerText = 'Ou  use';
 }
