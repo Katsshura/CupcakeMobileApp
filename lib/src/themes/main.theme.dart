@@ -7,8 +7,19 @@ class AppTheme {
       primaryColor: const Color(0xFFAE7A3D),
       fontFamily: 'Roboto',
       textTheme: const TextTheme(
-          button: TextStyle(
-              fontSize: 13, fontWeight: FontWeight.w500, fontFamily: 'Roboto')),
+        button: TextStyle(
+            fontSize: 13, fontWeight: FontWeight.w500, fontFamily: 'Roboto'),
+        overline: TextStyle(
+            fontSize: 12,
+            fontWeight: FontWeight.w400,
+            fontFamily: 'Roboto',
+            color: Colors.black45),
+        labelMedium: TextStyle(
+            fontSize: 12,
+            fontWeight: FontWeight.w400,
+            fontFamily: 'Roboto',
+            color: Colors.black54, letterSpacing: 1.3),
+      ),
     );
   }
 }
