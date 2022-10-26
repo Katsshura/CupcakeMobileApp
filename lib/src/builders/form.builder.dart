@@ -90,6 +90,109 @@ class FormBuilder {
     );
   }
 
+  Widget buildLoginWithAppleButton(BuildContext context) {
+    return ElevatedButton(
+        onPressed: () => _underDevelopmentDialog(context),
+        style: ButtonStyle(
+            backgroundColor: MaterialStateColor.resolveWith(
+                (states) => const Color.fromRGBO(255, 255, 255, 0.93))),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            const Icon(Icons.apple, color: Colors.black),
+            Expanded(
+              child: Container(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      TextConstants.signInWithAppleButtonText,
+                      textAlign: TextAlign.center,
+                      style: Theme.of(context).textTheme.labelMedium,
+                    )
+                  ],
+                ),
+              ),
+            )
+          ],
+        ));
+  }
+
+  Widget buildLoginWithGoogleButton(BuildContext context) {
+    return ElevatedButton(
+        onPressed: () => _underDevelopmentDialog(context),
+        style: ButtonStyle(
+            backgroundColor: MaterialStateColor.resolveWith(
+                (states) => const Color.fromRGBO(255, 255, 255, 0.93))),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            SizedBox(
+                width: 24.0,
+                height: 24.0,
+                child: Image.network(
+                    'http://pngimg.com/uploads/google/google_PNG19635.png',
+                    fit: BoxFit.cover)),
+            Expanded(
+              child: Container(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      TextConstants.signInWithGoogleButtonText,
+                      textAlign: TextAlign.center,
+                      style: Theme.of(context).textTheme.labelMedium,
+                    )
+                  ],
+                ),
+              ),
+            )
+          ],
+        ));
+  }
+
+  Widget buildLogoWithText(BuildContext context) {
+    return Center(
+      child: Column(
+        children: [
+          SizedBox(
+            height: 60,
+            width: 60,
+            child: Image.asset("lib/resources/images/coffee_logo.png"),
+          ),
+          Container(
+            height: 17,
+          ),
+          RichText(
+              text: TextSpan(
+            style: const TextStyle(
+                color: Colors.black,
+                fontWeight: FontWeight.bold,
+                fontSize: 21,
+                fontFamily: 'Montserrat'),
+            children: <TextSpan>[
+              TextSpan(
+                  text: 'C',
+                  style: TextStyle(color: Theme.of(context).primaryColor)),
+              const TextSpan(text: 'offee '),
+              TextSpan(
+                  text: 'D',
+                  style: TextStyle(color: Theme.of(context).primaryColor)),
+              const TextSpan(text: 'elivery'),
+            ],
+          )),
+          Container(
+            height: 20,
+          ),
+          Text(
+            TextConstants.logoSubtitleText,
+            style: Theme.of(context).textTheme.labelMedium,
+          ),
+        ],
+      ),
+    );
+  }
+
   ButtonStyle buildButtonStyle(BuildContext context) {
     return ButtonStyle(
         elevation: MaterialStateProperty.all(5.0),
@@ -104,5 +207,23 @@ class FormBuilder {
     if (!snapshot.hasData) return PasswordFormEvent('', true);
     final toggled = !snapshot.data!.hidden;
     return PasswordFormEvent(snapshot.data!.password, toggled);
+  }
+
+  void _underDevelopmentDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Feature em desenvolvimento!'),
+        content: const Text(
+            'Essa funcionalidade é apenas visual, será desenvolvida posteriormente.'),
+        actions: [
+          ElevatedButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: const Text('Entendido'))
+        ],
+      ),
+    );
   }
 }
