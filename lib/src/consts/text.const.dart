@@ -13,7 +13,7 @@ class TextConstants {
 
   static const String submitButtonText = 'ENTRAR';
   static const String formSubmitErrorMessage =
-      'Senha ou Email inválidos, tente novamente!';
+      'Email ou senha inválido, tente novamente!';
 
   static const String registerButtonText = 'CADASTRAR';
 

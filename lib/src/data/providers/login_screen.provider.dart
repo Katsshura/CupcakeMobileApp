@@ -1,6 +1,9 @@
+import 'package:cupcake/src/builders/toast.builder.dart';
+import 'package:cupcake/src/consts/text.const.dart';
 import 'package:cupcake/src/data/blocs/form/email_form.bloc.dart';
 import 'package:cupcake/src/data/blocs/form/password_form.bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:rxdart/rxdart.dart' as rx;
 
 class LoginScreenProvider extends InheritedWidget {
@@ -34,6 +37,17 @@ class LoginScreenProvider extends InheritedWidget {
     final email = ofEmail(context).lastEmittedValue;
     final password = ofPassword(context).lastEmittedValue.password!;
 
+    final errorToast = ToastBuilder.buildErrorToast(TextConstants.formSubmitErrorMessage);
+    _showToast(errorToast);
     print('User Login, Email: [$email] | Password: [$password]');
+  }
+
+  static void _showToast(Widget toast) {
+    final fToast = FToast();
+    fToast.showToast(
+      child: toast,
+      gravity: ToastGravity.TOP,
+      toastDuration: Duration(seconds: 5),
+    );
   }
 }
