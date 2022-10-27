@@ -41,6 +41,7 @@ dependencies:
   json_annotation: ^4.7.0
   decimal: ^2.3.0
   fluttertoast: ^8.0.1-nullsafety.0
+  shared_preferences: ^2.0.15
 
 
 dev_dependencies:
