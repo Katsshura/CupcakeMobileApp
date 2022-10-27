@@ -1,6 +1,6 @@
-class LoginEvent {
-  String? password;
-  String? email;
+class UserTokenEvent {
+  String? token;
+  String? type;
 
-  LoginEvent(this.password, this.email);
+  UserTokenEvent(this.token, this.type);
 }
