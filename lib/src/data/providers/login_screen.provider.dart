@@ -2,11 +2,18 @@ import 'package:cupcake/src/builders/toast.builder.dart';
 import 'package:cupcake/src/consts/text.const.dart';
 import 'package:cupcake/src/data/blocs/form/email_form.bloc.dart';
 import 'package:cupcake/src/data/blocs/form/password_form.bloc.dart';
+import 'package:cupcake/src/data/events/login.event.dart';
+import 'package:cupcake/src/data/providers/user.provider.dart';
+import 'package:cupcake/src/models/user/user_login.model.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:rxdart/rxdart.dart' as rx;
 
+import '../../services/user.service.dart';
+
 class LoginScreenProvider extends InheritedWidget {
+  static final UserService _userService = UserService();
+
   final EmailFormBloc _emailBloc;
   final PasswordFormBloc _passwordBloc;
 
@@ -33,17 +40,30 @@ class LoginScreenProvider extends InheritedWidget {
         emailStream, passwordStream, (a, b) => true);
   }
 
-  static void submitForm(BuildContext context) async {
+  static void submitForm(BuildContext context, String redirectPath) {
     final email = ofEmail(context).lastEmittedValue;
     final password = ofPassword(context).lastEmittedValue.password!;
 
-    final errorToast = ToastBuilder.buildErrorToast(TextConstants.formSubmitErrorMessage);
-    _showToast(errorToast);
-    print('User Login, Email: [$email] | Password: [$password]');
+    _userService.login(UserLoginModel(email, password)).then((value) {
+      UserProvider.ofUser(context)
+          .publish(UserTokenEvent(value.accessToken, value.tokenType));
+      Navigator.pushNamed(context, redirectPath);
+    }).catchError(
+      (error) {
+        _showErrorToast(context);
+      },
+    );
   }
 
-  static void _showToast(Widget toast) {
+  static void _showErrorToast(BuildContext context) {
+    final errorToast =
+        ToastBuilder.buildErrorToast(TextConstants.formSubmitErrorMessage);
+    _showToast(errorToast, context);
+  }
+
+  static void _showToast(Widget toast, BuildContext context) {
     final fToast = FToast();
+    fToast.init(context);
     fToast.showToast(
       child: toast,
       gravity: ToastGravity.TOP,

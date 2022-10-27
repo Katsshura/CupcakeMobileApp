@@ -5,7 +5,9 @@ import 'package:cupcake/src/widgets/text_divider.widget.dart';
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatelessWidget with FormBuilder {
-  const LoginScreen({super.key});
+  final String redirectPath;
+
+  const LoginScreen({super.key, required this.redirectPath});
 
   @override
   Widget build(BuildContext context) {
@@ -28,10 +30,10 @@ class LoginScreen extends StatelessWidget with FormBuilder {
               buildPasswordTextField(LoginScreenProvider.ofPassword(context)),
               Container(height: 30.0,),
               buildSubmitButton(LoginScreenProvider.isSubmitValid(context),
-                  () => LoginScreenProvider.submitForm(context)),
+                  () => LoginScreenProvider.submitForm(context, redirectPath)),
               buildRegisterButton(() => Navigator.pushNamed(context, 'routeName'), context),
               Container(height: 25,),
-              TextDivider(text: TextConstants.loginScreenDividerText),
+              const TextDivider(text: TextConstants.loginScreenDividerText),
               buildLoginWithGoogleButton(context),
               buildLoginWithAppleButton(context),
             ],

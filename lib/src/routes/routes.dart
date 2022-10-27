@@ -1,4 +1,6 @@
+import 'package:cupcake/src/data/events/login.event.dart';
 import 'package:cupcake/src/data/providers/login_screen.provider.dart';
+import 'package:cupcake/src/data/providers/user.provider.dart';
 import 'package:cupcake/src/screens/login.screen.dart';
 import 'package:flutter/material.dart';
 
@@ -28,7 +30,12 @@ class Routes {
   static _buildLoginPage() {
     return MaterialPageRoute(
       builder: (context) {
-        return LoginScreenProvider(child: LoginScreen());
+        return StreamBuilder<UserTokenEvent>(
+          stream: UserProvider.ofUser(context).stream,
+          builder: (context, snapshot) {
+            return LoginScreenProvider(child: LoginScreen(redirectPath: '/2',));
+          }
+        );
       },
     );
   }
