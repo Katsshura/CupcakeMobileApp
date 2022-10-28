@@ -1,5 +1,8 @@
+import 'package:cupcake/src/builders/toast.builder.dart';
+import 'package:cupcake/src/consts/routes_path.const.dart';
 import 'package:cupcake/src/consts/text.const.dart';
 import 'package:cupcake/src/data/blocs/bloc.dart';
+import 'package:cupcake/src/models/user/registration/user_registration.model.dart';
 import 'package:flutter/material.dart';
 
 class RegistrationFormBuilder {
@@ -78,25 +81,35 @@ class RegistrationFormBuilder {
     );
   }
 
-  Widget buildNextButton(Function onPressed, BuildContext context) {
-    return ElevatedButton(
-      onPressed: () => onPressed.call(),
-      style: buildButtonStyle(context),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: const [
-          Text(TextConstants.nextButtonLabel),
-        ],
-      ),
-    );
+  Widget buildNextButton(
+      BuildContext context, Stream<UserRegistrationModel> stream) {
+    return StreamBuilder<UserRegistrationModel>(
+        stream: stream,
+        builder: (context, snapshot) {
+          return ElevatedButton(
+            onPressed: !snapshot.hasData
+                ? () => ToastBuilder.showErrorToast(
+                    context, TextConstants.proceedToAddressRegistrationError)
+                : () => Navigator.pushNamed(
+                    context, RoutesPath.registrationAddress,
+                    arguments: snapshot.data!),
+            style: buildButtonStyle(context),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: const [
+                Text(TextConstants.nextButtonLabel),
+              ],
+            ),
+          );
+        });
   }
 
   ButtonStyle buildButtonStyle(BuildContext context) {
     return ButtonStyle(
         elevation: MaterialStateProperty.all(5.0),
         backgroundColor: MaterialStateColor.resolveWith(
-                (states) => Theme.of(context).primaryColor),
+            (states) => Theme.of(context).primaryColor),
         textStyle: MaterialStateProperty.resolveWith(
-                (states) => Theme.of(context).textTheme.button));
+            (states) => Theme.of(context).textTheme.button));
   }
 }

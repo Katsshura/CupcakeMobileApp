@@ -23,4 +23,20 @@ class ToastBuilder {
       ),
     );
   }
+
+  static void showErrorToast(BuildContext context, String errorMessage) {
+    final errorToast =
+    ToastBuilder.buildErrorToast(errorMessage);
+    _showToast(errorToast, context);
+  }
+
+  static void _showToast(Widget toast, BuildContext context) {
+    final fToast = FToast();
+    fToast.init(context);
+    fToast.showToast(
+      child: toast,
+      gravity: ToastGravity.TOP,
+      toastDuration: Duration(seconds: 5),
+    );
+  }
 }
