@@ -40,4 +40,7 @@ class TextConstants {
   static const String birthdayHintText = 'Ex: 01/01//2000';
 
   static const String nextButtonLabel = 'Próximo';
+
+  static const String proceedToAddressRegistrationError =
+      'Por favor, preencher todos os campos antes de prosseguir!';
 }
