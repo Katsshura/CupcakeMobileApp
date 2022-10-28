@@ -23,4 +23,21 @@ class TextConstants {
   static const String signInWithGoogleButtonText = 'Entrar com Google';
 
   static const String loginScreenDividerText = 'Ou  use';
+
+  static const String registrationScreenTitle = 'Cadastro Pessoal';
+  static const String registrationScreenSubtitle = 'Dados Pessoais';
+
+  static const String stringDefaultValidationErrorMessage =
+      'Campo deve ter ao menos %s caracteres';
+
+  static const String nameLabelText = 'Nome';
+  static const String nameHintText = 'Ex: Joe Jiff';
+
+  static const String cpfLabelText = 'CPF';
+  static const String cpfHintText = 'Ex: 000.000.000-00';
+
+  static const String birthdayLabelText = 'Data de Nascimento';
+  static const String birthdayHintText = 'Ex: 01/01//2000';
+
+  static const String nextButtonLabel = 'Próximo';
 }
