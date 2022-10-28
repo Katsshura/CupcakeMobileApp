@@ -20,10 +20,15 @@ class RegistrationScreen extends StatelessWidget
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(height: 50,),
-            Center(child: buildLogo(context),),
             Container(
-              margin: const EdgeInsets.only(left: 45.0, top: 40.0, bottom: 10.0),
+              height: 50,
+            ),
+            Center(
+              child: buildLogo(context),
+            ),
+            Container(
+              margin:
+                  const EdgeInsets.only(left: 45.0, top: 40.0, bottom: 10.0),
               child: Text(
                 TextConstants.registrationScreenSubtitle,
                 style: Theme.of(context).textTheme.headline1,
@@ -45,7 +50,8 @@ class RegistrationScreen extends StatelessWidget
                     Container(
                       height: 25,
                     ),
-                    buildCpfTextField(RegistrationScreenProvider.ofCpf(context)),
+                    buildCpfTextField(
+                        RegistrationScreenProvider.ofCpf(context)),
                     Container(
                       height: 25,
                     ),
@@ -59,7 +65,10 @@ class RegistrationScreen extends StatelessWidget
                     Container(
                       height: 40.0,
                     ),
-                    buildNextButton(() => print('a'), context)
+                    buildNextButton(
+                        context,
+                        RegistrationScreenProvider.ofUserRegistrationModel(
+                            context))
                   ],
                 ),
               ),

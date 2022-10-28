@@ -1,4 +1,6 @@
+import 'package:cupcake/src/consts/routes_path.const.dart';
 import 'package:cupcake/src/data/blocs/form/user_name.bloc.dart';
+import 'package:cupcake/src/models/user/registration/user_registration.model.dart';
 import 'package:cupcake/src/services/user.service.dart';
 import 'package:flutter/material.dart';
 
@@ -6,6 +8,7 @@ import '../blocs/form/birthday.bloc.dart';
 import '../blocs/form/cpf.bloc.dart';
 import '../blocs/form/email_form.bloc.dart';
 import '../blocs/form/password_form.bloc.dart';
+import 'package:rxdart/rxdart.dart' as rx;
 
 class RegistrationScreenProvider extends InheritedWidget {
   static final UserService _userService = UserService();
@@ -42,4 +45,23 @@ class RegistrationScreenProvider extends InheritedWidget {
 
   static BirthdayBloc ofBirthday(BuildContext context) =>
       _ofProvider(context)._birthdayBloc;
+
+  static Stream<UserRegistrationModel> ofUserRegistrationModel(
+      BuildContext context) {
+    final userNameStream = ofName(context).stream;
+    final emailStream = ofEmail(context).stream;
+    final passwordStream = ofPassword(context).stream;
+    final cpfStream = ofCpf(context).stream;
+    final birthdayStream = ofBirthday(context).stream;
+
+    return rx.CombineLatestStream.combine5(
+      userNameStream,
+      emailStream,
+      passwordStream,
+      cpfStream,
+      birthdayStream,
+      (name, email, password, cpf, birthday) =>
+          UserRegistrationModel(email, name, cpf, password.password!, cpf),
+    );
+  }
 }
