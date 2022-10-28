@@ -151,6 +151,20 @@ class FormBuilder {
         ));
   }
 
+  Widget buildLogo(BuildContext context) {
+    return Center(
+      child: Column(
+        children: [
+          SizedBox(
+            height: 60,
+            width: 60,
+            child: Image.asset("lib/resources/images/coffee_logo.png"),
+          ),
+        ],
+      ),
+    );
+  }
+
   Widget buildLogoWithText(BuildContext context) {
     return Center(
       child: Column(
