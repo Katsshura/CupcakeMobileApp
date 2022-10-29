@@ -19,10 +19,7 @@ class CPFInputFormatter extends TextInputFormatter {
     if (textLength >= 9) {
       formattedText.write('${newValue.text.substring(6, intersectionIndex = 9)}-' );
     }
-
-    // if (textLength == 11) {
-    //   formattedText.write(newValue.text.substring(9));
-    // }
+    
     if (textLength >= intersectionIndex) {
       formattedText.write(newValue.text.substring(intersectionIndex));
     }
