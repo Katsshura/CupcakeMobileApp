@@ -6,6 +6,7 @@ import 'package:cupcake/src/formatters/cpf_input.formatter.dart';
 import 'package:cupcake/src/models/user/registration/user_registration.model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:intl/intl.dart';
 
 class RegistrationFormBuilder {
   Widget buildNameTextField(Bloc<String, String> bloc) {
@@ -65,12 +66,15 @@ class RegistrationFormBuilder {
   }
 
   Widget buildBirthdayTextField(Bloc<String, String> bloc) {
+    final controller = TextEditingController();
     return StreamBuilder(
       stream: bloc.stream,
       builder: (context, snapshot) {
         return TextField(
           style: Theme.of(context).textTheme.labelMedium,
-          keyboardType: TextInputType.number,
+          controller: controller,
+          keyboardType: TextInputType.datetime,
+          readOnly: true,
           decoration: InputDecoration(
             enabledBorder: const OutlineInputBorder(
               borderRadius: BorderRadius.all(Radius.circular(4.0)),
@@ -84,7 +88,11 @@ class RegistrationFormBuilder {
             errorText: snapshot.error?.toString(),
             border: const OutlineInputBorder(),
           ),
-          onChanged: bloc.publish,
+          onTap: () async {
+             final result = await _pickDateDialog(context) ?? '';
+             controller.text = result;
+             bloc.publish(result);
+          },
         );
       },
     );
@@ -120,5 +128,21 @@ class RegistrationFormBuilder {
             (states) => Theme.of(context).primaryColor),
         textStyle: MaterialStateProperty.resolveWith(
             (states) => Theme.of(context).textTheme.button));
+  }
+
+  Future<String?> _pickDateDialog(BuildContext context) async {
+    DateTime? pickedDate = await showDatePicker(
+        context: context,
+        initialDate: DateTime.now(),
+        firstDate: DateTime(2000), //DateTime.now() - not to allow to choose before today.
+        lastDate: DateTime(2101)
+    );
+
+    if(pickedDate != null ){
+      String formattedDate = DateFormat('yyyy-MM-dd').format(pickedDate);
+      return formattedDate;
+    }
+
+    return null;
   }
 }
