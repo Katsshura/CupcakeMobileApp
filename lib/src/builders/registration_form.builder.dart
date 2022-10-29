@@ -2,8 +2,10 @@ import 'package:cupcake/src/builders/toast.builder.dart';
 import 'package:cupcake/src/consts/routes_path.const.dart';
 import 'package:cupcake/src/consts/text.const.dart';
 import 'package:cupcake/src/data/blocs/bloc.dart';
+import 'package:cupcake/src/formatters/cpf_input.formatter.dart';
 import 'package:cupcake/src/models/user/registration/user_registration.model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class RegistrationFormBuilder {
   Widget buildNameTextField(Bloc<String, String> bloc) {
@@ -37,6 +39,12 @@ class RegistrationFormBuilder {
       builder: (context, snapshot) {
         return TextField(
           style: Theme.of(context).textTheme.labelMedium,
+          keyboardType: TextInputType.number,
+          inputFormatters: [
+            FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+            LengthLimitingTextInputFormatter(11),
+            CPFInputFormatter(),
+          ],
           decoration: InputDecoration(
             enabledBorder: const OutlineInputBorder(
               borderRadius: BorderRadius.all(Radius.circular(4.0)),
@@ -62,6 +70,7 @@ class RegistrationFormBuilder {
       builder: (context, snapshot) {
         return TextField(
           style: Theme.of(context).textTheme.labelMedium,
+          keyboardType: TextInputType.number,
           decoration: InputDecoration(
             enabledBorder: const OutlineInputBorder(
               borderRadius: BorderRadius.all(Radius.circular(4.0)),

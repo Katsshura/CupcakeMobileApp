@@ -61,7 +61,7 @@ class RegistrationScreenProvider extends InheritedWidget {
       cpfStream,
       birthdayStream,
       (name, email, password, cpf, birthday) =>
-          UserRegistrationModel(email, name, cpf, password.password!, cpf),
+          UserRegistrationModel(email, name, cpf, password.password!, birthday),
     );
   }
 }
