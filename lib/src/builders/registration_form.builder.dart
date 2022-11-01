@@ -2,7 +2,9 @@ import 'package:cupcake/src/builders/toast.builder.dart';
 import 'package:cupcake/src/consts/routes_path.const.dart';
 import 'package:cupcake/src/consts/text.const.dart';
 import 'package:cupcake/src/data/blocs/bloc.dart';
+import 'package:cupcake/src/formatters/cep_input.formatter.dart';
 import 'package:cupcake/src/formatters/cpf_input.formatter.dart';
+import 'package:cupcake/src/models/user/registration/address.model.dart';
 import 'package:cupcake/src/models/user/registration/user_registration.model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -115,6 +117,133 @@ class RegistrationFormBuilder {
               mainAxisAlignment: MainAxisAlignment.center,
               children: const [
                 Text(TextConstants.nextButtonLabel),
+              ],
+            ),
+          );
+        });
+  }
+
+  Widget buildCepTextField(Bloc<String, String> bloc) {
+    return StreamBuilder(
+      stream: bloc.stream,
+      builder: (context, snapshot) {
+        return TextField(
+          style: Theme.of(context).textTheme.labelMedium,
+          keyboardType: TextInputType.number,
+          inputFormatters: [
+            FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+            LengthLimitingTextInputFormatter(8),
+            CEPInputFormatter(),
+          ],
+          decoration: InputDecoration(
+            enabledBorder: const OutlineInputBorder(
+              borderRadius: BorderRadius.all(Radius.circular(4.0)),
+              borderSide: BorderSide(
+                width: 1.0,
+                color: Color.fromRGBO(0, 0, 0, 0.2),
+              ),
+            ),
+            labelText: TextConstants.cepLabelText,
+            hintText: TextConstants.cepHintText,
+            errorText: snapshot.error?.toString(),
+            border: const OutlineInputBorder(),
+          ),
+          onChanged: bloc.publish,
+        );
+      },
+    );
+  }
+
+  Widget buildAddressTextField(Bloc<String, String> bloc) {
+    return StreamBuilder(
+      stream: bloc.stream,
+      builder: (context, snapshot) {
+        return TextField(
+          style: Theme.of(context).textTheme.labelMedium,
+          decoration: InputDecoration(
+            enabledBorder: const OutlineInputBorder(
+              borderRadius: BorderRadius.all(Radius.circular(4.0)),
+              borderSide: BorderSide(
+                width: 1.0,
+                color: Color.fromRGBO(0, 0, 0, 0.2),
+              ),
+            ),
+            labelText: TextConstants.addressLabelText,
+            hintText: TextConstants.addressHintText,
+            errorText: snapshot.error?.toString(),
+            border: const OutlineInputBorder(),
+          ),
+          onChanged: bloc.publish,
+        );
+      },
+    );
+  }
+
+  Widget buildPropertyNumberTextField(Bloc<String, String> bloc) {
+    return StreamBuilder(
+      stream: bloc.stream,
+      builder: (context, snapshot) {
+        return TextField(
+          style: Theme.of(context).textTheme.labelMedium,
+          decoration: InputDecoration(
+            enabledBorder: const OutlineInputBorder(
+              borderRadius: BorderRadius.all(Radius.circular(4.0)),
+              borderSide: BorderSide(
+                width: 1.0,
+                color: Color.fromRGBO(0, 0, 0, 0.2),
+              ),
+            ),
+            labelText: TextConstants.propertyNumberLabelText,
+            hintText: TextConstants.propertyNumberHintText,
+            errorText: snapshot.error?.toString(),
+            border: const OutlineInputBorder(),
+          ),
+          onChanged: bloc.publish,
+        );
+      },
+    );
+  }
+
+  Widget buildComplementTextField(Bloc<String, String> bloc) {
+    return StreamBuilder(
+      stream: bloc.stream,
+      builder: (context, snapshot) {
+        return TextField(
+          style: Theme.of(context).textTheme.labelMedium,
+          decoration: InputDecoration(
+            enabledBorder: const OutlineInputBorder(
+              borderRadius: BorderRadius.all(Radius.circular(4.0)),
+              borderSide: BorderSide(
+                width: 1.0,
+                color: Color.fromRGBO(0, 0, 0, 0.2),
+              ),
+            ),
+            labelText: TextConstants.complementLabelText,
+            hintText: TextConstants.complementHintText,
+            errorText: snapshot.error?.toString(),
+            border: const OutlineInputBorder(),
+          ),
+          onChanged: bloc.publish,
+        );
+      },
+    );
+  }
+
+  Widget buildFinishButton(
+      BuildContext context, Stream<bool> stream, Function onPressed) {
+    return StreamBuilder<bool>(
+        stream: stream,
+        builder: (context, snapshot) {
+          return ElevatedButton(
+            onPressed: !snapshot.hasData
+                ? () => ToastBuilder.showErrorToast(
+                context, TextConstants.proceedToAddressRegistrationError)
+                : () => onPressed.call(),
+            style: buildButtonStyle(context),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: const [
+                Text(TextConstants.finishRegistrationButtonLabel),
               ],
             ),
           );
