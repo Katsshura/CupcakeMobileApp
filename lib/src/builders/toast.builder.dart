@@ -24,6 +24,33 @@ class ToastBuilder {
     );
   }
 
+  static Widget buildSuccessToast(String successMessage) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 12.0),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(25.0),
+        color: Colors.greenAccent,
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(Icons.check),
+          SizedBox(
+            width: 12.0,
+          ),
+          Flexible(child: Text(successMessage)),
+        ],
+      ),
+    );
+  }
+
+  static void showSuccessToast(BuildContext context, String successMessage) {
+    final successToast =
+    ToastBuilder.buildSuccessToast(successMessage);
+    _showToast(successToast, context);
+  }
+
+
   static void showErrorToast(BuildContext context, String errorMessage) {
     final errorToast =
     ToastBuilder.buildErrorToast(errorMessage);
