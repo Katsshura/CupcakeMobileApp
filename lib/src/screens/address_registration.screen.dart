@@ -1,21 +1,22 @@
 import 'package:cupcake/src/builders/form.builder.dart';
 import 'package:cupcake/src/builders/registration_form.builder.dart';
 import 'package:cupcake/src/consts/text.const.dart';
-import 'package:cupcake/src/data/providers/registration_screen.provider.dart';
+import 'package:cupcake/src/data/providers/address_registration_screen.provider.dart';
+import 'package:cupcake/src/models/user/registration/user_registration.model.dart';
 import 'package:cupcake/src/widgets/custom_app_bar.widget.dart';
 import 'package:flutter/material.dart';
 
-class RegistrationScreen extends StatelessWidget
+class AddressRegistrationScreen extends StatelessWidget
     with FormBuilder, RegistrationFormBuilder {
-  final TextEditingController _dateController = TextEditingController();
+  final UserRegistrationModel registrationModel;
 
-  RegistrationScreen({super.key});
+  const AddressRegistrationScreen({super.key, required this.registrationModel});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar:
-          CustomAppBar.build(context, TextConstants.registrationScreenTitle),
+      appBar: CustomAppBar.build(
+          context, TextConstants.addressRegistrationScreenTitle),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -30,7 +31,7 @@ class RegistrationScreen extends StatelessWidget
               margin:
                   const EdgeInsets.only(left: 45.0, top: 40.0, bottom: 10.0),
               child: Text(
-                TextConstants.registrationScreenSubtitle,
+                TextConstants.addressRegistrationScreenSubtitle,
                 style: Theme.of(context).textTheme.headline1,
               ),
             ),
@@ -40,36 +41,34 @@ class RegistrationScreen extends StatelessWidget
                 margin: const EdgeInsets.all(20.0),
                 child: Column(
                   children: [
-                    buildNameTextField(
-                        RegistrationScreenProvider.ofName(context)),
+                    buildCepTextField(
+                        AddressRegistrationScreenProvider.ofCep(context)),
                     Container(
                       height: 25,
                     ),
-                    buildEmailTextField(
-                        RegistrationScreenProvider.ofEmail(context)),
+                    buildAddressTextField(
+                        AddressRegistrationScreenProvider.ofAddress(context)),
                     Container(
                       height: 25,
                     ),
-                    buildCpfTextField(
-                        RegistrationScreenProvider.ofCpf(context)),
+                    buildPropertyNumberTextField(
+                        AddressRegistrationScreenProvider.ofPropertyNumber(
+                            context)),
                     Container(
                       height: 25,
                     ),
-                    buildBirthdayTextField(
-                        RegistrationScreenProvider.ofBirthday(context),
-                        _dateController),
-                    Container(
-                      height: 25,
-                    ),
-                    buildPasswordTextField(
-                        RegistrationScreenProvider.ofPassword(context)),
+                    buildComplementTextField(
+                        AddressRegistrationScreenProvider.ofComplement(
+                            context)),
                     Container(
                       height: 40.0,
                     ),
-                    buildNextButton(
+                    buildFinishButton(
                         context,
-                        RegistrationScreenProvider.ofUserRegistrationModel(
-                            context))
+                        AddressRegistrationScreenProvider.ofAddressModel(
+                            context),
+                        () => AddressRegistrationScreenProvider.submitForm(
+                            context, 'redirectPath', registrationModel))
                   ],
                 ),
               ),
