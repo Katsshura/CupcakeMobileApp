@@ -1,3 +1,4 @@
+import 'package:cupcake/src/builders/toast.builder.dart';
 import 'package:flutter/material.dart';
 
 import '../consts/text.const.dart';
@@ -64,7 +65,8 @@ class FormBuilder {
         builder: (context, snapshot) {
           return ElevatedButton(
             onPressed: !snapshot.hasData
-                ? () => print('Error')
+                ? () => ToastBuilder.showErrorToast(
+                context, TextConstants.formSubmitErrorMessage)
                 : () => onPressed.call(),
             style: buildButtonStyle(context),
             child: Row(
