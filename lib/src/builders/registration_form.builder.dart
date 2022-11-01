@@ -65,8 +65,8 @@ class RegistrationFormBuilder {
     );
   }
 
-  Widget buildBirthdayTextField(Bloc<String, String> bloc) {
-    final controller = TextEditingController();
+  Widget buildBirthdayTextField(
+      Bloc<String, String> bloc, TextEditingController controller) {
     return StreamBuilder(
       stream: bloc.stream,
       builder: (context, snapshot) {
@@ -89,9 +89,9 @@ class RegistrationFormBuilder {
             border: const OutlineInputBorder(),
           ),
           onTap: () async {
-             final result = await _pickDateDialog(context) ?? '';
-             controller.text = result;
-             bloc.publish(result);
+            final result = await _pickDateDialog(context) ?? '';
+            controller.text = result;
+            bloc.publish(result);
           },
         );
       },
@@ -133,12 +133,12 @@ class RegistrationFormBuilder {
   Future<String?> _pickDateDialog(BuildContext context) async {
     DateTime? pickedDate = await showDatePicker(
         context: context,
-        initialDate: DateTime.now(),
-        firstDate: DateTime(2000), //DateTime.now() - not to allow to choose before today.
-        lastDate: DateTime(2101)
-    );
+        initialDate: DateTime(2000),
+        firstDate: DateTime(1950),
+        //DateTime.now() - not to allow to choose before today.
+        lastDate: DateTime(2101));
 
-    if(pickedDate != null ){
+    if (pickedDate != null) {
       String formattedDate = DateFormat('yyyy-MM-dd').format(pickedDate);
       return formattedDate;
     }

@@ -6,7 +6,9 @@ import 'package:flutter/material.dart';
 
 class RegistrationScreen extends StatelessWidget
     with FormBuilder, RegistrationFormBuilder {
-  const RegistrationScreen({super.key});
+  final TextEditingController _dateController = TextEditingController();
+
+  RegistrationScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +58,8 @@ class RegistrationScreen extends StatelessWidget
                       height: 25,
                     ),
                     buildBirthdayTextField(
-                        RegistrationScreenProvider.ofBirthday(context)),
+                        RegistrationScreenProvider.ofBirthday(context),
+                        _dateController),
                     Container(
                       height: 25,
                     ),
