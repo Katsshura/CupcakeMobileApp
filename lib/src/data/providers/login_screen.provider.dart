@@ -50,24 +50,9 @@ class LoginScreenProvider extends InheritedWidget {
       Navigator.pushNamed(context, redirectPath);
     }).catchError(
       (error) {
-        _showErrorToast(context);
+        ToastBuilder.showErrorToast(
+            context, TextConstants.formSubmitErrorMessage);
       },
-    );
-  }
-
-  static void _showErrorToast(BuildContext context) {
-    final errorToast =
-        ToastBuilder.buildErrorToast(TextConstants.formSubmitErrorMessage);
-    _showToast(errorToast, context);
-  }
-
-  static void _showToast(Widget toast, BuildContext context) {
-    final fToast = FToast();
-    fToast.init(context);
-    fToast.showToast(
-      child: toast,
-      gravity: ToastGravity.TOP,
-      toastDuration: Duration(seconds: 5),
     );
   }
 }

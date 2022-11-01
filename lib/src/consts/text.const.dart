@@ -23,4 +23,44 @@ class TextConstants {
   static const String signInWithGoogleButtonText = 'Entrar com Google';
 
   static const String loginScreenDividerText = 'Ou  use';
+
+  static const String registrationScreenTitle = 'Cadastro Pessoal';
+  static const String registrationScreenSubtitle = 'Dados Pessoais';
+
+  static const String stringDefaultValidationErrorMessage =
+      'Campo deve ter ao menos %s caracteres';
+
+  static const String nameLabelText = 'Nome';
+  static const String nameHintText = 'Ex: Joe Jiff';
+
+  static const String cpfLabelText = 'CPF';
+  static const String cpfHintText = 'Ex: 000.000.000-00';
+
+  static const String birthdayLabelText = 'Data de Nascimento';
+  static const String birthdayHintText = 'Ex: 01/01/2000';
+
+  static const String nextButtonLabel = 'Próximo';
+
+  static const String proceedToAddressRegistrationError =
+      'Por favor, preencher todos os campos antes de prosseguir!';
+
+  static const String addressRegistrationScreenTitle = 'Detalhes da Entrega';
+  static const String addressRegistrationScreenSubtitle = 'Dados de Entrega';
+
+  static const String cepLabelText = 'CEP';
+  static const String cepHintText = 'Ex: 00000-000';
+
+  static const String addressLabelText = 'Endereço';
+  static const String addressHintText = 'Ex: Av. Doutor Fulano';
+
+  static const String propertyNumberLabelText = 'Número';
+  static const String propertyNumberHintText = 'Ex: 0001';
+
+  static const String complementLabelText = 'Complemento';
+  static const String complementHintText = 'Ex: Ao lado da UPA';
+
+  static const String finishRegistrationButtonLabel = 'Finalizar Cadastro';
+
+  static const String successOnRegisterUserMessage =
+      'Usuário cadastrado com sucesso! Por favor se logar no sistema.';
 }
