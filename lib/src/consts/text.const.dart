@@ -43,4 +43,24 @@ class TextConstants {
 
   static const String proceedToAddressRegistrationError =
       'Por favor, preencher todos os campos antes de prosseguir!';
+
+  static const String addressRegistrationScreenTitle = 'Detalhes da Entrega';
+  static const String addressRegistrationScreenSubtitle = 'Dados de Entrega';
+
+  static const String cepLabelText = 'CEP';
+  static const String cepHintText = 'Ex: 00000-000';
+
+  static const String addressLabelText = 'Endereço';
+  static const String addressHintText = 'Ex: Av. Doutor Fulano';
+
+  static const String propertyNumberLabelText = 'Número';
+  static const String propertyNumberHintText = 'Ex: 0001';
+
+  static const String complementLabelText = 'Complemento';
+  static const String complementHintText = 'Ex: Ao lado da UPA';
+
+  static const String finishRegistrationButtonLabel = 'Finalizar Cadastro';
+
+  static const String successOnRegisterUserMessage =
+      'Usuário cadastrado com sucesso! Por favor se logar no sistema.';
 }
