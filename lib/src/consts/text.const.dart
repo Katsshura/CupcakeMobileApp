@@ -63,4 +63,8 @@ class TextConstants {
 
   static const String successOnRegisterUserMessage =
       'Usuário cadastrado com sucesso! Por favor se logar no sistema.';
+
+  static const String homeScreenTitle = 'Os mais aclamados';
+  static const String homeScreenSubtitle =
+      'Os cupcakes mais amados pelos nossos clientes';
 }
