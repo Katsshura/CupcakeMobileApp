@@ -27,11 +27,11 @@ class HighlightWidget extends StatelessWidget {
                       MediaQuery.of(context).size.width, 75.0),
                 ),
                 image: DecorationImage(
-                  alignment: const FractionalOffset(0.5, 0.35),
+                  alignment: const FractionalOffset(0.5, 0.0),
                   fit: BoxFit.cover,
                   image: NetworkImage(model.product.imageUrl),
                   colorFilter: const ColorFilter.mode(
-                      Color.fromRGBO(21, 84, 246, 0.3), BlendMode.saturation),
+                      Color.fromRGBO(21, 84, 246, 0.4), BlendMode.saturation),
                 ),
               ),
             ),
@@ -41,7 +41,9 @@ class HighlightWidget extends StatelessWidget {
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
                   colors: [
+                    const Color.fromRGBO(18, 18, 18, 0.80),
                     const Color.fromRGBO(18, 18, 18, 0.40),
+                    Colors.white.withOpacity(0.0),
                     Colors.white.withOpacity(0.0),
                   ],
                 ),
@@ -50,7 +52,7 @@ class HighlightWidget extends StatelessWidget {
             Column(
               children: [
                 Container(
-                  height: 50,
+                  height: 30,
                 ),
                 Text(
                   model.title,
