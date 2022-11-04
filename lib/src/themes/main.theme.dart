@@ -6,7 +6,7 @@ class AppTheme {
       brightness: Brightness.light,
       primaryColor: const Color(0xFFAE7A3D),
       fontFamily: 'Roboto',
-      textTheme: const TextTheme(
+      textTheme: TextTheme(
         button: TextStyle(
             fontSize: 13, fontWeight: FontWeight.w500, fontFamily: 'Roboto'),
         overline: TextStyle(
@@ -49,6 +49,12 @@ class AppTheme {
           fontWeight: FontWeight.w400,
           fontFamily: 'Roboto',
           color: Colors.black87,
+        ),
+        headline6: TextStyle(
+          fontSize: 20,
+          fontWeight: FontWeight.w400,
+          fontFamily: 'Roboto',
+          color: Colors.black.withOpacity(0.45),
         ),
         subtitle1: TextStyle(
           fontSize: 13,
