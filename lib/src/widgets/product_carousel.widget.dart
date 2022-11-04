@@ -21,8 +21,9 @@ class ProductCarousel extends StatelessWidget {
             children: [
               InkWell(
                 onTap: () => Navigator.pushNamed(
-                    context, RoutesPath.productDetails,
-                    arguments: item,
+                  context,
+                  RoutesPath.productDetails,
+                  arguments: item,
                 ),
                 child: SizedBox(
                   width: 128,
@@ -32,11 +33,20 @@ class ProductCarousel extends StatelessWidget {
                       Container(
                         height: 128,
                         margin: const EdgeInsets.only(bottom: 5),
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            fit: BoxFit.fill,
-                            image: NetworkImage(item.imageUrl),
-                          ),
+                        child: Image.network(
+                          item.imageUrl,
+                          loadingBuilder: (context, child, loadingProgress) {
+                            if (loadingProgress == null) return child;
+
+                            return Center(
+                              child: CircularProgressIndicator(
+                                  value: loadingProgress.expectedTotalBytes !=
+                                          null
+                                      ? loadingProgress.cumulativeBytesLoaded /
+                                          loadingProgress.expectedTotalBytes!
+                                      : null),
+                            );
+                          },
                         ),
                       ),
                       Text(
