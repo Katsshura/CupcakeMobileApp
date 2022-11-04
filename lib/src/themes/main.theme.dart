@@ -44,8 +44,20 @@ class AppTheme {
           fontFamily: 'Roboto',
           color: Colors.black87,
         ),
+        headline5: TextStyle(
+          fontSize: 15,
+          fontWeight: FontWeight.w400,
+          fontFamily: 'Roboto',
+          color: Colors.black87,
+        ),
         subtitle1: TextStyle(
           fontSize: 13,
+          fontWeight: FontWeight.w400,
+          fontFamily: 'Roboto',
+          color: Colors.black54,
+        ),
+        subtitle2: TextStyle(
+          fontSize: 12,
           fontWeight: FontWeight.w400,
           fontFamily: 'Roboto',
           color: Colors.black54,
