@@ -1,5 +1,6 @@
 import 'package:cupcake/src/consts/routes_path.const.dart';
 import 'package:cupcake/src/models/product/product.model.dart';
+import 'package:cupcake/src/utils/image_loading.util.dart';
 import 'package:flutter/material.dart';
 
 class ProductCarousel extends StatelessWidget {
@@ -35,18 +36,7 @@ class ProductCarousel extends StatelessWidget {
                         margin: const EdgeInsets.only(bottom: 5),
                         child: Image.network(
                           item.imageUrl,
-                          loadingBuilder: (context, child, loadingProgress) {
-                            if (loadingProgress == null) return child;
-
-                            return Center(
-                              child: CircularProgressIndicator(
-                                  value: loadingProgress.expectedTotalBytes !=
-                                          null
-                                      ? loadingProgress.cumulativeBytesLoaded /
-                                          loadingProgress.expectedTotalBytes!
-                                      : null),
-                            );
-                          },
+                          loadingBuilder: ImageLoadingUtil.getLoadingProgress,
                         ),
                       ),
                       Text(
