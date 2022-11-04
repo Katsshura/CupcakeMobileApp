@@ -1,5 +1,6 @@
 import 'package:cupcake/src/consts/routes_path.const.dart';
 import 'package:cupcake/src/models/product/product.model.dart';
+import 'package:cupcake/src/utils/image_loading.util.dart';
 import 'package:flutter/material.dart';
 
 class ProductCarousel extends StatelessWidget {
@@ -21,8 +22,9 @@ class ProductCarousel extends StatelessWidget {
             children: [
               InkWell(
                 onTap: () => Navigator.pushNamed(
-                    context, RoutesPath.productDetails,
-                    arguments: item,
+                  context,
+                  RoutesPath.productDetails,
+                  arguments: item,
                 ),
                 child: SizedBox(
                   width: 128,
@@ -32,11 +34,9 @@ class ProductCarousel extends StatelessWidget {
                       Container(
                         height: 128,
                         margin: const EdgeInsets.only(bottom: 5),
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            fit: BoxFit.fill,
-                            image: NetworkImage(item.imageUrl),
-                          ),
+                        child: Image.network(
+                          item.imageUrl,
+                          loadingBuilder: ImageLoadingUtil.getLoadingProgress,
                         ),
                       ),
                       Text(

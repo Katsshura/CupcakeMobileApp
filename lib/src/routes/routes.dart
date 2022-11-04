@@ -5,10 +5,12 @@ import 'package:cupcake/src/data/providers/home/home_screen.provider.dart';
 import 'package:cupcake/src/data/providers/login_screen.provider.dart';
 import 'package:cupcake/src/data/providers/registration_screen.provider.dart';
 import 'package:cupcake/src/data/providers/user.provider.dart';
+import 'package:cupcake/src/models/product/product.model.dart';
 import 'package:cupcake/src/models/user/registration/user_registration.model.dart';
 import 'package:cupcake/src/screens/address_registration.screen.dart';
 import 'package:cupcake/src/screens/home.screen.dart';
 import 'package:cupcake/src/screens/login.screen.dart';
+import 'package:cupcake/src/screens/product.screen.dart';
 import 'package:cupcake/src/screens/registration.screen.dart';
 import 'package:flutter/material.dart';
 
@@ -24,6 +26,9 @@ class Routes {
       case RoutesPath.registrationAddress:
         final model = settings.arguments as UserRegistrationModel;
         return _buildAddressRegistrationPage(model);
+      case RoutesPath.productDetails:
+        final model = settings.arguments as ProductModel;
+        return _buildProductDetailsPage(model);
       default:
         return _buildNotFoundPage();
     }
@@ -82,6 +87,14 @@ class Routes {
             child: AddressRegistrationScreen(
           registrationModel: model,
         ));
+      },
+    );
+  }
+
+  static _buildProductDetailsPage(ProductModel model) {
+    return MaterialPageRoute(
+      builder: (context) {
+        return ProductScreen(model: model,);
       },
     );
   }

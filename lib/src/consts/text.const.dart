@@ -67,4 +67,6 @@ class TextConstants {
   static const String homeScreenTitle = 'Os mais aclamados';
   static const String homeScreenSubtitle =
       'Os cupcakes mais amados pelos nossos clientes';
+
+  static const String productDetailsAddToCartText = 'ADICIONAR AO CARRINHO';
 }
