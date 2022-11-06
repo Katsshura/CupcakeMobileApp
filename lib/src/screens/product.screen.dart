@@ -1,4 +1,9 @@
+import 'package:cupcake/src/builders/toast.builder.dart';
+import 'package:cupcake/src/consts/routes_path.const.dart';
 import 'package:cupcake/src/consts/text.const.dart';
+import 'package:cupcake/src/data/events/cart/cart.event.dart';
+import 'package:cupcake/src/data/providers/cart/cart.provider.dart';
+import 'package:cupcake/src/enums/cart_actions.enum.dart';
 import 'package:cupcake/src/models/product/product.model.dart';
 import 'package:cupcake/src/utils/image_loading.util.dart';
 import 'package:cupcake/src/widgets/custom_app_bar.widget.dart';
@@ -18,14 +23,22 @@ class ProductScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             SizedBox(
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.width,
+              width: MediaQuery
+                  .of(context)
+                  .size
+                  .width,
+              height: MediaQuery
+                  .of(context)
+                  .size
+                  .width,
               child: Image.network(
                 model.imageUrl,
                 loadingBuilder: ImageLoadingUtil.getLoadingProgress,
               ),
             ),
-            Container(height: 20,),
+            Container(
+              height: 20,
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -34,12 +47,11 @@ class ProductScreen extends StatelessWidget {
                   child: Text(
                     model.name,
                     style: TextStyle(
-                      fontSize: 25,
-                      fontWeight: FontWeight.w400,
-                      fontFamily: 'Roboto',
-                      color: Colors.black.withOpacity(0.75),
-                      letterSpacing: 1.0
-                    ),
+                        fontSize: 25,
+                        fontWeight: FontWeight.w400,
+                        fontFamily: 'Roboto',
+                        color: Colors.black.withOpacity(0.75),
+                        letterSpacing: 1.0),
                   ),
                 ),
                 Container(
@@ -51,8 +63,7 @@ class ProductScreen extends StatelessWidget {
                         fontWeight: FontWeight.w400,
                         fontFamily: 'Roboto',
                         color: Colors.black.withOpacity(0.9),
-                        letterSpacing: 1.0
-                    ),
+                        letterSpacing: 1.0),
                   ),
                 ),
               ],
@@ -62,7 +73,10 @@ class ProductScreen extends StatelessWidget {
               padding: const EdgeInsets.all(20.0),
               child: Text(
                 model.description,
-                style: Theme.of(context).textTheme.headline6,
+                style: Theme
+                    .of(context)
+                    .textTheme
+                    .headline6,
                 textAlign: TextAlign.justify,
               ),
             ),
@@ -70,13 +84,26 @@ class ProductScreen extends StatelessWidget {
               margin: const EdgeInsets.only(top: 15),
               padding: const EdgeInsets.only(left: 50, right: 50),
               child: ElevatedButton(
-                onPressed: () => print('pressed'),
+                onPressed: () {
+                  CartProvider.ofCart(context)
+                      .publish(CartEvent(CartAction.increase, model.id, model));
+                  ToastBuilder.showSuccessToast(
+                      context, TextConstants.addedToCartSuccessMessage);
+                  Navigator.popAndPushNamed(context, RoutesPath.cart);
+                },
                 style: ButtonStyle(
                     elevation: MaterialStateProperty.all(5.0),
                     backgroundColor: MaterialStateColor.resolveWith(
-                            (states) => Theme.of(context).primaryColor),
+                            (states) =>
+                        Theme
+                            .of(context)
+                            .primaryColor),
                     textStyle: MaterialStateProperty.resolveWith(
-                            (states) => Theme.of(context).textTheme.button)),
+                            (states) =>
+                        Theme
+                            .of(context)
+                            .textTheme
+                            .button)),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: const [
