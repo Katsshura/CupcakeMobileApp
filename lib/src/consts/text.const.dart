@@ -69,4 +69,16 @@ class TextConstants {
       'Os cupcakes mais amados pelos nossos clientes';
 
   static const String productDetailsAddToCartText = 'ADICIONAR AO CARRINHO';
+
+  static const String cartAppBarTitle = 'Carrinho de Compras';
+  static const String emptyCartText =
+      'Parece que você ainda não adicionou itens ao seu carrinho )=';
+  static const String emptyCartButton = 'Continue Comprando';
+  static const String addedToCartSuccessMessage =
+      'Item adicionado ao carrinho :)';
+  static const String cartRemoveButton = 'Remover';
+  static const String cartTotalLabel = 'Total';
+  static const String cartWarningLabel =
+      'Preço incluindo entrega e taxa de serviço.';
+  static const String goToPaymentButton = 'Ir Para o Pagamento';
 }
