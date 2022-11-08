@@ -39,7 +39,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
   void _navigateToPage(BuildContext context, int index) {
     switch(index) {
       case 0:
-        Navigator.popAndPushNamed(context, RoutesPath.home);
+        Navigator.popUntil(context, (route) => route.isFirst);
         return;
       case 1:
         _underDevelopmentDialog(context);

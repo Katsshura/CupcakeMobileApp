@@ -8,6 +8,7 @@ import 'package:cupcake/src/data/providers/user.provider.dart';
 import 'package:cupcake/src/models/product/product.model.dart';
 import 'package:cupcake/src/models/user/registration/user_registration.model.dart';
 import 'package:cupcake/src/screens/address_registration.screen.dart';
+import 'package:cupcake/src/screens/cart.screen.dart';
 import 'package:cupcake/src/screens/home.screen.dart';
 import 'package:cupcake/src/screens/login.screen.dart';
 import 'package:cupcake/src/screens/product.screen.dart';
@@ -29,6 +30,8 @@ class Routes {
       case RoutesPath.productDetails:
         final model = settings.arguments as ProductModel;
         return _buildProductDetailsPage(model);
+      case RoutesPath.cart:
+        return _buildCartPage();
       default:
         return _buildNotFoundPage();
     }
@@ -96,6 +99,12 @@ class Routes {
       builder: (context) {
         return ProductScreen(model: model,);
       },
+    );
+  }
+
+  static _buildCartPage() {
+    return MaterialPageRoute(
+      builder: (context) => CartScreen(),
     );
   }
 }
