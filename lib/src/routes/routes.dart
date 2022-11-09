@@ -21,7 +21,8 @@ class Routes {
       case RoutesPath.home:
         return _buildHomePage();
       case RoutesPath.login:
-        return _buildLoginPage();
+        final redirect = settings.arguments as String;
+        return _buildLoginPage(redirect);
       case RoutesPath.registration:
         return _buildRegistrationPage();
       case RoutesPath.registrationAddress:
@@ -60,15 +61,15 @@ class Routes {
     );
   }
 
-  static _buildLoginPage() {
+  static _buildLoginPage(String redirect) {
     return MaterialPageRoute(
       builder: (context) {
         return StreamBuilder<UserTokenEvent>(
             stream: UserProvider.ofUser(context).stream,
             builder: (context, snapshot) {
               return LoginScreenProvider(
-                  child: const LoginScreen(
-                redirectPath: '/2',
+                  child: LoginScreen(
+                redirectPath: redirect,
               ));
             });
       },
