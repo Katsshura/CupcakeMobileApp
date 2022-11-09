@@ -5,4 +5,5 @@ class RoutesPath {
   static const String registrationAddress = '/registration/address';
   static const String productDetails = '/product';
   static const String cart = '/cart';
+  static const String payment = '/payment';
 }
