@@ -90,4 +90,15 @@ class TextConstants {
 
   static const String orderCreatedWithSuccess =
       'Seu pedido foi criado com sucesso :)';
+
+  static const String cardRegistrationScreenTitle = 'Cadastro Cartão';
+  static const String cardNameLabelText = 'Apelido do cartão';
+  static const String cardNumberLabelText = 'Número do cartão';
+  static const String cardCvvLabelText = 'CVV';
+  static const String cardExpireDateLabelText = 'Validade';
+  static const String cardChargeWarning =
+      'Será feita uma pequena cobrança em seu cartão para validação, logo em seguida o valor será estornado.';
+
+  static const String paymentCreatedWithSuccess =
+      'Novo método de pagamento criado com sucesso!';
 }
