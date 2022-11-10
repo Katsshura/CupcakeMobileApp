@@ -87,4 +87,7 @@ class TextConstants {
   static const String paymentAvailableMoney = 'Saldo disponível';
   static const String paymentMethodsLabel = 'Formas de Pagamento';
   static const String paymentNewCardLabel = 'Cadastrar Novo Cartão';
+
+  static const String orderCreatedWithSuccess =
+      'Seu pedido foi criado com sucesso :)';
 }

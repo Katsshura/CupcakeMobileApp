@@ -35,7 +35,7 @@ class CartScreen extends StatelessWidget {
             value.product.price *
                 Decimal.parse(value.quantity.toString()))
                 .reduce((value, element) => value + element) +
-                Decimal.parse('4.99');
+                Decimal.parse('6.99');
 
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,

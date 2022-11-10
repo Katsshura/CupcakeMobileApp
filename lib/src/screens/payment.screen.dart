@@ -158,7 +158,7 @@ class PaymentScreen extends StatelessWidget {
               ),
               CartTotals(
                 totalValue: snapshot.data!,
-                onPressed: () => print('pressed'),
+                onPressed: () => PaymentProvider.createOrder(context),
               ),
             ],
           );
