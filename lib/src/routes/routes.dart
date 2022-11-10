@@ -4,6 +4,7 @@ import 'package:cupcake/src/data/providers/address_registration_screen.provider.
 import 'package:cupcake/src/data/providers/home/home_screen.provider.dart';
 import 'package:cupcake/src/data/providers/login_screen.provider.dart';
 import 'package:cupcake/src/data/providers/payment/payment.provider.dart';
+import 'package:cupcake/src/data/providers/payment/payment_registration.provider.dart';
 import 'package:cupcake/src/data/providers/registration_screen.provider.dart';
 import 'package:cupcake/src/data/providers/user.provider.dart';
 import 'package:cupcake/src/models/product/product.model.dart';
@@ -13,6 +14,7 @@ import 'package:cupcake/src/screens/cart.screen.dart';
 import 'package:cupcake/src/screens/home.screen.dart';
 import 'package:cupcake/src/screens/login.screen.dart';
 import 'package:cupcake/src/screens/payment.screen.dart';
+import 'package:cupcake/src/screens/payment_registration.screen.dart';
 import 'package:cupcake/src/screens/product.screen.dart';
 import 'package:cupcake/src/screens/registration.screen.dart';
 import 'package:flutter/material.dart';
@@ -37,6 +39,9 @@ class Routes {
         return _buildCartPage();
       case RoutesPath.payment:
         return _buildPaymentPage();
+      case RoutesPath.paymentRegister:
+        final redirect = settings.arguments as String;
+        return _buildPaymentRegistrationPage(redirect);
       default:
         return _buildNotFoundPage();
     }
@@ -102,7 +107,9 @@ class Routes {
   static _buildProductDetailsPage(ProductModel model) {
     return MaterialPageRoute(
       builder: (context) {
-        return ProductScreen(model: model,);
+        return ProductScreen(
+          model: model,
+        );
       },
     );
   }
@@ -116,6 +123,17 @@ class Routes {
   static _buildPaymentPage() {
     return MaterialPageRoute(
       builder: (context) => PaymentProvider(child: const PaymentScreen()),
+    );
+  }
+
+  static _buildPaymentRegistrationPage(String redirect) {
+    return MaterialPageRoute(
+      builder: (context) {
+        return PaymentRegistrationProvider(
+            child: PaymentRegistrationScreen(
+          redirectPath: redirect,
+        ));
+      },
     );
   }
 }
