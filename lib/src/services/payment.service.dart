@@ -34,7 +34,7 @@ class PaymentService {
     setAuthorizationOnHeader(tokenEvent);
 
     final result = await http.post(
-      Uri.parse(_baseUrl.format(userId)),
+      Uri.parse(_baseUrl.format([userId])),
       body: json.encode(model.toJson()),
       headers: _headers,
     );
