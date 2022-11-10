@@ -4,8 +4,11 @@ import 'package:flutter/material.dart';
 
 class CartTotals extends StatelessWidget {
   final Decimal totalValue;
+  final Function onPressed;
 
-  const CartTotals({super.key, required this.totalValue});
+  const CartTotals(
+      {super.key, required this.totalValue, required this.onPressed});
+
   @override
   Widget build(BuildContext context) {
     return Expanded(
@@ -36,15 +39,13 @@ class CartTotals extends StatelessWidget {
               style: Theme.of(context).textTheme.subtitle1,
             ),
             ElevatedButton(
-              onPressed: () => Navigator.popUntil(
-                  context, (route) => route.isFirst),
+              onPressed: () => onPressed.call(),
               style: ButtonStyle(
                   elevation: MaterialStateProperty.all(5.0),
                   backgroundColor: MaterialStateColor.resolveWith(
-                          (states) => Theme.of(context).primaryColor),
+                      (states) => Theme.of(context).primaryColor),
                   textStyle: MaterialStateProperty.resolveWith(
-                          (states) =>
-                      Theme.of(context).textTheme.button)),
+                      (states) => Theme.of(context).textTheme.button)),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: const [
@@ -57,5 +58,4 @@ class CartTotals extends StatelessWidget {
       ),
     );
   }
-
 }

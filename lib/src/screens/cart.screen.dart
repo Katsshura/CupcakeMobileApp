@@ -30,6 +30,12 @@ class CartScreen extends StatelessWidget {
             }
 
             final map = snapshot.data!;
+            final totalCart = map.values
+                .map((value) =>
+            value.product.price *
+                Decimal.parse(value.quantity.toString()))
+                .reduce((value, element) => value + element) +
+                Decimal.parse('6.99');
 
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -56,12 +62,11 @@ class CartScreen extends StatelessWidget {
                   ),
                 ),
                 CartTotals(
-                  totalValue: map.values
-                          .map((value) =>
-                              value.product.price *
-                              Decimal.parse(value.quantity.toString()))
-                          .reduce((value, element) => value + element) +
-                      Decimal.parse('4.99'),
+                  totalValue: totalCart,
+                  onPressed: () {
+                    CartProvider.ofTotal(context).publish(totalCart);
+                    CartProvider.redirectToPaymentOrLogin(context);
+                  },
                 )
               ],
             );

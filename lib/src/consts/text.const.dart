@@ -81,4 +81,13 @@ class TextConstants {
   static const String cartWarningLabel =
       'Preço incluindo entrega e taxa de serviço.';
   static const String goToPaymentButton = 'Ir Para o Pagamento';
+
+  static const String paymentAppBarTitle = 'Pagamento';
+  static const String paymentWalletLabel = 'Minha Carteira';
+  static const String paymentAvailableMoney = 'Saldo disponível';
+  static const String paymentMethodsLabel = 'Formas de Pagamento';
+  static const String paymentNewCardLabel = 'Cadastrar Novo Cartão';
+
+  static const String orderCreatedWithSuccess =
+      'Seu pedido foi criado com sucesso :)';
 }
