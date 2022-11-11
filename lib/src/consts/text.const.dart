@@ -101,4 +101,10 @@ class TextConstants {
 
   static const String paymentCreatedWithSuccess =
       'Novo método de pagamento criado com sucesso!';
+
+  static const String ordersAppBarTitle = 'Seus Pedidos';
+
+  static const String orderDetailsAppBarTitle = 'Detalhes do Pedido';
+  static const String orderDetailsHelpButtonLabel = 'Atendimento';
+  static const String taxPaidLabel = 'Taxas e Entrega';
 }

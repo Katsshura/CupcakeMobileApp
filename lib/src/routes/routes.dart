@@ -3,6 +3,8 @@ import 'package:cupcake/src/data/events/login.event.dart';
 import 'package:cupcake/src/data/providers/address_registration_screen.provider.dart';
 import 'package:cupcake/src/data/providers/home/home_screen.provider.dart';
 import 'package:cupcake/src/data/providers/login_screen.provider.dart';
+import 'package:cupcake/src/data/providers/order/order.provider.dart';
+import 'package:cupcake/src/data/providers/order/order_details.provider.dart';
 import 'package:cupcake/src/data/providers/payment/payment.provider.dart';
 import 'package:cupcake/src/data/providers/payment/payment_registration.provider.dart';
 import 'package:cupcake/src/data/providers/registration_screen.provider.dart';
@@ -13,6 +15,8 @@ import 'package:cupcake/src/screens/address_registration.screen.dart';
 import 'package:cupcake/src/screens/cart.screen.dart';
 import 'package:cupcake/src/screens/home.screen.dart';
 import 'package:cupcake/src/screens/login.screen.dart';
+import 'package:cupcake/src/screens/order.screen.dart';
+import 'package:cupcake/src/screens/order_details.screen.dart';
 import 'package:cupcake/src/screens/payment.screen.dart';
 import 'package:cupcake/src/screens/payment_registration.screen.dart';
 import 'package:cupcake/src/screens/product.screen.dart';
@@ -42,6 +46,11 @@ class Routes {
       case RoutesPath.paymentRegister:
         final redirect = settings.arguments as String;
         return _buildPaymentRegistrationPage(redirect);
+      case RoutesPath.order:
+        return _buildOrderPage();
+      case RoutesPath.orderDetails:
+        final orderId = settings.arguments as int;
+        return _buildOrderDetailsPage(orderId);
       default:
         return _buildNotFoundPage();
     }
@@ -134,6 +143,21 @@ class Routes {
           redirectPath: redirect,
         ));
       },
+    );
+  }
+
+  static _buildOrderPage() {
+    return MaterialPageRoute(
+      builder: (context) => OrderProvider(child: OrderScreen()),
+    );
+  }
+
+  static _buildOrderDetailsPage(int orderId) {
+    return MaterialPageRoute(
+      builder: (context) => OrderDetailsProvider(
+          child: OrderDetailsScreen(
+        orderId: orderId,
+      )),
     );
   }
 }

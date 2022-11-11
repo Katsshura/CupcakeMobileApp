@@ -1,4 +1,6 @@
 import 'package:cupcake/src/consts/routes_path.const.dart';
+import 'package:cupcake/src/data/providers/user.provider.dart';
+import 'package:cupcake/src/utils/jwt.util.dart';
 import 'package:flutter/material.dart';
 
 class CustomBottomNavigationBar extends StatelessWidget {
@@ -37,7 +39,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
   }
 
   void _navigateToPage(BuildContext context, int index) {
-    switch(index) {
+    switch (index) {
       case 0:
         Navigator.popUntil(context, (route) => route.isFirst);
         return;
@@ -45,10 +47,12 @@ class CustomBottomNavigationBar extends StatelessWidget {
         _underDevelopmentDialog(context);
         return;
       case 2:
-        Navigator.pushNamed(context, RoutesPath.login);
+        _redirectToOrdersOrLogin(context);
         return;
       case 3:
-        _underDevelopmentDialog(context);
+        // _underDevelopmentDialog(context);
+        Navigator.pushNamed(context, RoutesPath.login,
+            arguments: RoutesPath.home);
         return;
     }
   }
@@ -69,5 +73,17 @@ class CustomBottomNavigationBar extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  void _redirectToOrdersOrLogin(BuildContext context) {
+    final token = UserProvider.ofUser(context).lastEmittedValue?.token;
+
+    if (!JwtUtils.isValid(token)) {
+      Navigator.pushNamed(context, RoutesPath.login,
+          arguments: RoutesPath.order);
+      return;
+    }
+
+    Navigator.pushNamed(context, RoutesPath.order);
   }
 }
