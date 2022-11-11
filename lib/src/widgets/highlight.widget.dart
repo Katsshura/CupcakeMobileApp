@@ -11,7 +11,7 @@ class HighlightWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () => Navigator.pushNamed(context, RoutesPath.productDetails,
-          arguments: model.product.id),
+          arguments: model.product),
       child: SizedBox(
         height: MediaQuery.of(context).size.height / 2.3,
         child: Stack(

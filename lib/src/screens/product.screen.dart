@@ -39,34 +39,37 @@ class ProductScreen extends StatelessWidget {
             Container(
               height: 20,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Container(
-                  padding: const EdgeInsets.only(left: 10),
-                  child: Text(
-                    model.name,
-                    style: TextStyle(
-                        fontSize: 25,
-                        fontWeight: FontWeight.w400,
-                        fontFamily: 'Roboto',
-                        color: Colors.black.withOpacity(0.75),
-                        letterSpacing: 1.0),
+            Padding(
+              padding: const EdgeInsets.only(left: 10, right: 10),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Container(
+                    padding: const EdgeInsets.only(left: 10),
+                    child: Text(
+                      model.name,
+                      style: TextStyle(
+                          fontSize: 23,
+                          fontWeight: FontWeight.w400,
+                          fontFamily: 'Roboto',
+                          color: Colors.black.withOpacity(0.75),
+                          letterSpacing: 1.0),
+                    ),
                   ),
-                ),
-                Container(
-                  padding: const EdgeInsets.only(right: 10),
-                  child: Text(
-                    'R\$ ${model.price}',
-                    style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w400,
-                        fontFamily: 'Roboto',
-                        color: Colors.black.withOpacity(0.9),
-                        letterSpacing: 1.0),
+                  Container(
+                    padding: const EdgeInsets.only(right: 10),
+                    child: Text(
+                      'R\$ ${model.price}',
+                      style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w400,
+                          fontFamily: 'Roboto',
+                          color: Colors.black.withOpacity(0.9),
+                          letterSpacing: 1.0),
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
             Container(
               margin: const EdgeInsets.only(top: 25),
