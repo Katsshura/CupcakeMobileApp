@@ -57,7 +57,7 @@ class PaymentProvider extends InheritedWidget {
           context, TextConstants.orderCreatedWithSuccess);
       return Navigator.pushNamedAndRemoveUntil(
           context, RoutesPath.orderDetails, (route) => route.isFirst,
-          arguments: value);
+          arguments: value.orderId);
     }).catchError((error) {
       ToastBuilder.showErrorToast(context, error.toString());
     });
