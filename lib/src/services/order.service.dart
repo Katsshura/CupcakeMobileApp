@@ -34,7 +34,7 @@ class OrderService {
     setAuthorizationOnHeader(jwt);
 
     final result = await http.get(
-      Uri.parse('$_baseUrl/user/$userId'),
+      Uri.parse('$_baseUrl/user/$userId?size=30'),
       headers: _headers,
     );
 
