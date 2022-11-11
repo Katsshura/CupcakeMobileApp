@@ -1,3 +1,4 @@
+import 'package:cupcake/src/consts/routes_path.const.dart';
 import 'package:cupcake/src/consts/text.const.dart';
 import 'package:cupcake/src/data/providers/order/order.provider.dart';
 import 'package:cupcake/src/widgets/custom_app_bar.widget.dart';
@@ -48,42 +49,51 @@ class OrderScreen extends StatelessWidget {
                           final item = listSnapshot.data![index];
 
                           final List<Widget> orderItems = item.orderItems
-                              .map((e) => OrderItemTile(model: e,))
+                              .map((e) => OrderItemTile(
+                                    model: e,
+                                  ))
                               .cast<Widget>()
                               .toList();
 
-                          orderItems.add(
-                            Container(
-                              margin: const EdgeInsets.only(left: 16, right: 16, top: 15),
-                              child: Column(
-                                children: [
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text(
-                                        'Total: ',
-                                        style: Theme.of(context).textTheme.headline5,
+                          orderItems.add(Container(
+                            margin: const EdgeInsets.only(
+                                left: 16, right: 16, top: 15),
+                            child: Column(
+                              children: [
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      'Total: ',
+                                      style:
+                                          Theme.of(context).textTheme.headline5,
+                                    ),
+                                    Text(
+                                      'R\$ ${item.orderTotal}',
+                                      style: const TextStyle(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.bold,
+                                        fontFamily: 'Roboto',
                                       ),
-                                      Text(
-                                        'R\$ ${item.orderTotal}',
-                                        style: const TextStyle(
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.bold,
-                                          fontFamily: 'Roboto',
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                  Container(height: 15,)
-                                ],
-                              ),
-                            )
-                          );
+                                    )
+                                  ],
+                                ),
+                                Container(
+                                  height: 15,
+                                )
+                              ],
+                            ),
+                          ));
 
                           return Card(
                             color: Colors.white.withOpacity(0.92),
                             child: InkWell(
-                              onTap: () => print(item.orderId),
+                              onTap: () => Navigator.pushNamed(
+                                context,
+                                RoutesPath.orderDetails,
+                                arguments: item.orderId,
+                              ),
                               child: Column(
                                 children: orderItems,
                               ),

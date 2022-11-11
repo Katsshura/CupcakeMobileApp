@@ -14,7 +14,7 @@ class OrderService {
     'Accept': 'application/json',
   };
 
-  Future<bool> createOrder(
+  Future<OrderModel> createOrder(
       CreateOrderModel orderModel, UserTokenEvent jwt) async {
     setAuthorizationOnHeader(jwt);
 
@@ -26,7 +26,7 @@ class OrderService {
 
     if (result.statusCode != 201) return Future.error('Internal Server Error');
 
-    return Future.value(true);
+    return OrderModel.fromJson(UTF8JsonDecoderUtil.decode(result.bodyBytes));
   }
 
   Future<List<OrderModel>> listOrderForGivenUser(
