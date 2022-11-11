@@ -50,9 +50,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
         _redirectToOrdersOrLogin(context);
         return;
       case 3:
-        // _underDevelopmentDialog(context);
-        Navigator.pushNamed(context, RoutesPath.login,
-            arguments: RoutesPath.home);
+        _underDevelopmentDialog(context);
         return;
     }
   }
