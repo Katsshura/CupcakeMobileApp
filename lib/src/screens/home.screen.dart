@@ -18,10 +18,14 @@ class HomeScreen extends StatelessWidget with HomeScreenBuilder {
         backgroundColor: Theme.of(context).primaryColor,
         title: Row(
           children: [
-            SizedBox(
-              height: 36,
-              width: 36,
-              child: Image.asset("lib/resources/images/coffee_logo.png"),
+            InkWell(
+              onLongPress: () => Navigator.pushNamed(context, RoutesPath.login,
+                  arguments: RoutesPath.home),
+              child: SizedBox(
+                height: 36,
+                width: 36,
+                child: Image.asset("lib/resources/images/coffee_logo.png"),
+              ),
             ),
             Container(
               margin: EdgeInsets.only(left: 20),
