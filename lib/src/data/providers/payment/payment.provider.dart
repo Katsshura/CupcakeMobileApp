@@ -33,15 +33,13 @@ class PaymentProvider extends InheritedWidget {
 
   static Future<List<PaymentModel>> getPaymentMethods(BuildContext context) {
     final tokenModel = UserProvider.ofUser(context).lastEmittedValue!;
-    final tokenClaims = JwtUtils.getJwtClaims(tokenModel.token!);
-    final userId = tokenClaims!['id'] as int;
+    final userId = JwtUtils.getUserId(tokenModel);
     return _paymentService.fetchPaymentMethods(userId, tokenModel);
   }
 
   static void createOrder(BuildContext context) {
     final tokenEvent = UserProvider.ofUser(context).lastEmittedValue!;
-    final tokenClaims = JwtUtils.getJwtClaims(tokenEvent.token!);
-    final userId = tokenClaims!['id'] as int;
+    final userId = JwtUtils.getUserId(tokenEvent);
     final cartItems = CartProvider.ofCart(context).lastEmittedValue;
     final paymentId = ofPayment(context).lastEmittedValue;
     final extraCharges = Decimal.parse('6.99');
@@ -57,7 +55,8 @@ class PaymentProvider extends InheritedWidget {
     _orderService.createOrder(order, tokenEvent).then((value) {
       ToastBuilder.showSuccessToast(
           context, TextConstants.orderCreatedWithSuccess);
-      return Navigator.pushNamed(context, RoutesPath.orderDetails,
+      return Navigator.pushNamedAndRemoveUntil(
+          context, RoutesPath.orderDetails, (route) => route.isFirst,
           arguments: value);
     }).catchError((error) {
       ToastBuilder.showErrorToast(context, error.toString());

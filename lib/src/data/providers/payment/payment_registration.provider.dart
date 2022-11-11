@@ -75,8 +75,7 @@ class PaymentRegistrationProvider extends InheritedWidget {
 
   static void submitForm(BuildContext context, String redirectPath) {
     final tokenEvent = UserProvider.ofUser(context).lastEmittedValue!;
-    final tokenClaims = JwtUtils.getJwtClaims(tokenEvent.token!);
-    final userId = tokenClaims!['id'] as int;
+    final userId = JwtUtils.getUserId(tokenEvent);
     final cardName = ofCardName(context).lastEmittedValue;
     final cardNumber =
         ofCardNumber(context).lastEmittedValue.replaceAll(' ', '');

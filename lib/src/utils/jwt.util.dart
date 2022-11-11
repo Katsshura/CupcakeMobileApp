@@ -1,5 +1,9 @@
 import 'dart:convert';
 
+import 'package:cupcake/src/data/events/login.event.dart';
+import 'package:cupcake/src/data/providers/user.provider.dart';
+import 'package:flutter/material.dart';
+
 class JwtUtils {
 
   static Map<String, dynamic>? getJwtClaims(String token) {
@@ -26,5 +30,10 @@ class JwtUtils {
 
     final date = DateTime.fromMillisecondsSinceEpoch(expiration * 1000);
     return DateTime.now().isBefore(date);
+  }
+
+  static int getUserId(UserTokenEvent tokenEvent) {
+    final tokenClaims = getJwtClaims(tokenEvent.token!);
+    return tokenClaims!['id'] as int;
   }
 }
