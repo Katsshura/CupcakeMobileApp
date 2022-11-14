@@ -107,4 +107,5 @@ class TextConstants {
   static const String orderDetailsAppBarTitle = 'Detalhes do Pedido';
   static const String orderDetailsHelpButtonLabel = 'Atendimento';
   static const String taxPaidLabel = 'Taxas e Entrega';
+  static const String orderStatusLabel = 'Status do Pedido';
 }
