@@ -20,6 +20,9 @@ class CartTransformer {
         return _decrease(accumulated, value);
       case CartAction.delete:
         return _delete(accumulated, value);
+      case CartAction.clear:
+        accumulated.clear();
+        return accumulated;
     }
   }
 
