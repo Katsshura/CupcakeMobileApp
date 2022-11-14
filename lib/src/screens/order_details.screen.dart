@@ -4,6 +4,7 @@ import 'package:cupcake/src/widgets/custom_app_bar.widget.dart';
 import 'package:cupcake/src/widgets/custom_bottom_navigation_bar.widget.dart';
 import 'package:cupcake/src/widgets/order/order_item_tile.widget.dart';
 import 'package:cupcake/src/widgets/order/order_status.widget.dart';
+import 'package:cupcake/src/widgets/text_divider.widget.dart';
 import 'package:flutter/material.dart';
 
 class OrderDetailsScreen extends StatelessWidget {
@@ -70,9 +71,7 @@ class OrderDetailsScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-                    Container(
-                      height: 10,
-                    ),
+                    const TextDivider(text: TextConstants.orderStatusLabel),
                     Padding(
                       padding: const EdgeInsets.only(right: 15),
                       child: GestureDetector(
@@ -102,6 +101,7 @@ class OrderDetailsScreen extends StatelessWidget {
                         children: orderStatus,
                       ),
                     ),
+                    const Divider(),
                     SizedBox(
                       height: 75,
                       child: Column(
