@@ -55,6 +55,7 @@ class PaymentProvider extends InheritedWidget {
     _orderService.createOrder(order, tokenEvent).then((value) {
       ToastBuilder.showSuccessToast(
           context, TextConstants.orderCreatedWithSuccess);
+      CartProvider.clearCart(context);
       return Navigator.pushNamedAndRemoveUntil(
           context, RoutesPath.orderDetails, (route) => route.isFirst,
           arguments: value.orderId);

@@ -1,5 +1,6 @@
 enum CartAction {
   increase,
   decrease,
-  delete
+  delete,
+  clear,
 }
