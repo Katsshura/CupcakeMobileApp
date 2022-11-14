@@ -25,7 +25,10 @@ class CartItem extends StatelessWidget {
       children: [
         Container(
           height: 96,
-          padding: const EdgeInsets.only(left: 30, right: 30),
+          padding: EdgeInsets.only(
+            left: MediaQuery.of(context).size.width * 0.05,
+            right: MediaQuery.of(context).size.width * 0.05,
+          ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -86,7 +89,10 @@ class CartItem extends StatelessWidget {
                               CartEvent(CartAction.increase, productId)),
                         ),
                         Container(
-                          margin: const EdgeInsets.only(left: 10, right: 10),
+                          margin: EdgeInsets.only(
+                            left: MediaQuery.of(context).size.width * 0.015,
+                            right: MediaQuery.of(context).size.width * 0.015,
+                          ),
                           child: Text('${cartModel.quantity}'),
                         ),
                         InkWell(
