@@ -20,8 +20,8 @@ class OrderStatusWidget extends StatelessWidget {
           Text(
             _convertStatusToPortuguese(),
             style: TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
+              fontSize: 18,
+              fontWeight: FontWeight.w500,
               fontFamily: 'Roboto'
             ),
           )
