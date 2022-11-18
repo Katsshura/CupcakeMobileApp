@@ -9,6 +9,18 @@
 
 ---
 
+## Credits
+
+All resources used in this project (Images, Icons, etc) were on public domain of either Unsplash or Free Icons. 
+
+Free Icons Compliance:
+
+https://freeicons.io/vector-and-svg-logos-icons-20/visa-icon-9198#
+https://freeicons.io/vector-and-svg-logos-icons-09/mastercard-icon-icon#
+https://freeicons.io/vector-and-svg-logos-icons-08/elo-icon-icon#
+
+If I've missed some credit or needs to update this section, please get in touch with me!
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.
