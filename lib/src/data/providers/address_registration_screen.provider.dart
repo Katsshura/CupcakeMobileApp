@@ -76,7 +76,8 @@ class AddressRegistrationScreenProvider extends InheritedWidget {
     _userService.registerUser(body).then((value) {
       ToastBuilder.showSuccessToast(
           context, TextConstants.successOnRegisterUserMessage);
-      return Navigator.pushNamed(context, RoutesPath.login);
+      return Navigator.pushNamed(context, RoutesPath.login,
+          arguments: RoutesPath.home);
     }).catchError((error) {
       ToastBuilder.showErrorToast(context, error.toString());
     });
